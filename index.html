@@ -4,6 +4,7 @@
 <head>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
   <title>Happy Eid Mubarak</title>
   <meta name="description" content="Happy Eid Mubarak">
   <meta property="og:title" content="Happy Eid Mubarak" />
@@ -19,12 +20,12 @@
 
 <div class="wrapper">
   <div class="inner"></div>
-  <h2 style="color: #01787E;" id="title">Loading...</h2>
+  <h2 style="color: #01787E;">Happy Eid Mubaarok ✨<span id="jam">Loading...</span></h2>
   <p>
     <br><span id="greeting">Loading...</span>
     <br><span id="note">Loading...</span>
     <br><span id="callToAction">Loading...</span>
-    <br><br><a id="thrLink" href="THR.html" target="_blank" style="color: #fff; background-color: #3498db; padding: 3px 8px; border: 1px solid #3498db; border-radius: 3px; text-decoration: none;">Kirim THR</a>
+    <br><a id="thrLink" href="THR.html" target="_blank" style="color: #fff; background-color: #3498db; padding: 3px 8px; border: 1px solid #3498db; border-radius: 3px; text-decoration: none;">Kirim THR</a>
   </p>
 
   <br>
@@ -46,8 +47,6 @@
   </button>
 </div>
 
-<p id="jam"></p>
-
 <script>
   // Automatically play music when the page loads
   const player = document.getElementById('musicPlayer');
@@ -56,7 +55,6 @@
   fetch('config/message.json')
           .then(response => response.json())
           .then(data => {
-            document.getElementById('title').textContent = data.title;
             document.getElementById('greeting').textContent = data.greeting;
             document.getElementById('note').textContent = data.note;
             document.getElementById('callToAction').textContent = data.callToAction;
