@@ -46,19 +46,12 @@
   </button>
 </div>
 
+<p id="jam"></p>
+
 <script>
   // Automatically play music when the page loads
   const player = document.getElementById('musicPlayer');
   const button = document.getElementById('playPauseButton');
-
-  window.onload = function() {
-    player.play(); // Play the audio
-
-    // Handle auto-play restrictions
-    player.oncanplaythrough = function() {
-      player.play();
-    };
-  };
 
   fetch('config/message.json')
           .then(response => response.json())
