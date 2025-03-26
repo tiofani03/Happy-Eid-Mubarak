@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-        name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Happy Eid Mubarak</title>
   <meta name="description" content="Happy Eid Mubarak">
@@ -12,25 +11,20 @@
   <link rel="shortcut icon" type="image/x-icon" href="Card-Logo.png">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<div class="butn">
-  <button>
-    <span></span>
-  </button>
-</div>
 
 <div class="wrapper">
-  <div class="inner">
-  </div>
+  <div class="inner"></div>
   <h2 style="color: #01787E;" id="title">Loading...</h2>
   <p>
     <br><span id="greeting">Loading...</span>
     <br><span id="note">Loading...</span>
     <br><span id="callToAction">Loading...</span>
-    <br><a id="thrLink" href="THR.html" style="color: #fff; background-color: #3498db; padding: 3px 8px; border: 1px solid #3498db; border-radius: 3px; text-decoration: none;">Send</a>
+    <br><br><a id="thrLink" href="THR.html" target="_blank" style="color: #fff; background-color: #3498db; padding: 3px 8px; border: 1px solid #3498db; border-radius: 3px; text-decoration: none;">Kirim THR</a>
   </p>
 
   <br>
@@ -44,7 +38,28 @@
   </div>
 </div>
 
+<!-- Music player controls -->
+<audio id="musicPlayer" src="music.mp3" preload="auto"></audio>
+<div class="music-controls">
+  <button id="playPauseButton" onclick="toggleMusic()">
+    <i class="fas fa-play"></i>
+  </button>
+</div>
+
 <script>
+  // Automatically play music when the page loads
+  const player = document.getElementById('musicPlayer');
+  const button = document.getElementById('playPauseButton');
+
+  window.onload = function() {
+    player.play(); // Play the audio
+
+    // Handle auto-play restrictions
+    player.oncanplaythrough = function() {
+      player.play();
+    };
+  };
+
   fetch('config/message.json')
           .then(response => response.json())
           .then(data => {
@@ -61,6 +76,21 @@
     var jamna = new Date().toLocaleTimeString('en-US', { timeZone: "Asia/Jakarta" });
     document.getElementById("jam").innerHTML = jamna;
   }, 1000);
+
+  // Play/Pause functionality for the music player
+  function toggleMusic() {
+
+    if (player.paused) {
+      player.play();
+      button.innerHTML = '<i class="fas fa-pause"></i>';  // Change to pause icon
+    } else {
+      player.pause();
+      button.innerHTML = '<i class="fas fa-play"></i>';  // Change back to play icon
+    }
+  }
+
+
+
 </script>
 </body>
 

@@ -13,17 +13,18 @@
 }
 
 body {
-  min-height: 100vh;
-  min-width: 100vw;
-  background: #fcebe7;
-  position: relative;
-  font-family: "Josefin Sans", sans-serif;
-  color: #01787E;
-  /* Jejak */
-  overflow: hidden;
-  /* background: url("https://puu.sh/rEaEf/963c6b2499.svg"), #ffffff; */
-  /* background:  rgb(255, 225, 230); */
-  background-size: 20px;
+  min-height: 100vh;               /* Ensure the body takes up full height of the viewport */
+  min-width: 100vw;                /* Ensure the body takes up full width of the viewport */
+  background-image: url('eid.jpg'); /* Replace 'img.png' with the path to your image */
+  background-size: cover;          /* Ensure the image covers the entire screen */
+  background-position: center;     /* Position the background image at the center */
+  background-repeat: no-repeat;    /* Prevent the image from repeating */
+  font-family: "Josefin Sans", sans-serif; /* Set the font */
+  color: #01787E;                  /* Set the text color */
+  overflow: hidden;                /* Hide any overflow content */
+  margin: 0;                       /* Remove any default margin */
+  padding: 0;                      /* Remove any default padding */
+  box-sizing: border-box;          /* Ensure padding and borders don't affect the total width/height */
 }
 
 /* body:before {
@@ -349,4 +350,37 @@ body .wrapper .sleeve:before {
     width: 70%;
     left: 15%;
   }
+}
+
+/* Music Controls */
+.music-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.music-controls button {
+  background-color: #f96c4c;
+  color: white;
+  border: none;
+  padding: 20px;
+  font-size: 24px;  /* Adjust for size */
+  cursor: pointer;
+  border-radius: 50%;  /* This makes it round */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  width: 70px;  /* Make the button bigger for a round look */
+  height: 70px; /* Make the button round */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music-controls button:hover {
+  background-color: #f96c4c;
+}
+
+.music-controls button:focus {
+  outline: none;  /* Remove the outline when clicked */
 }
