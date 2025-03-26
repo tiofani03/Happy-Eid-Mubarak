@@ -3,9 +3,9 @@
 
 <head>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-        name='viewport' />
+          name='viewport' />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>THR</title>
+    <title id="pageTitle">Loading...</title>
     <meta name="description" content="THR">
     <meta property="og:title" content="THR" />
     <meta property="og:description" content="THR">
@@ -17,30 +17,45 @@
 </head>
 
 <body>
-
-
-    <!-- partial:index.partial.html -->
-    <div class="box">
-        <div class="payment">
-            <h3>Kita Kan Jauh,Boleh Kali👉👈</h3>
-            <p>Dana</p>
-            <p id="p1"><b>6288210982908</b></p>
-            <button class="copy" onclick="copyToClipboard('#p1')">COPY</button>
-            <br>
-            <p>DANA QR</p>
-            <a target="_blank" href="Dana.jpg"><button class="copy">SCAN QR DANA</button></a>
-        </div>
+<div class="box">
+    <div class="payment">
+        <h3 id="message">Loading...</h3>
+        <p id="paymentMethod">Loading...</p>
+        <p id="phone"><b>Loading...</b></p>
+        <button class="copy" id="copyButton" onclick="copyToClipboard('#phone')">Loading...</button>
+        <br>
+        <p id="qrText">Loading...</p>
+        <a target="_blank" id="qrLink" href="#">
+            <button class="copy" id="qrButton">Loading...</button>
+        </a>
     </div>
+</div>
 
-    <script>
-        function copyToClipboard(element) {
-            var $temp = $("<input>");
-            $("body").append($temp);
-            $temp.val($(element).text()).select();
-            document.execCommand("copy");
-            $temp.remove();
-        }
-    </script>
+<script>
+    // Load the JSON file and update the content dynamically
+    fetch('config/thr_message.json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('pageTitle').textContent = data.title;
+            document.getElementById('message').textContent = data.message;
+            document.getElementById('paymentMethod').textContent = data.paymentMethod;
+            document.getElementById('phone').innerHTML = `<b>${data.phone}</b>`;
+            document.getElementById('copyButton').textContent = data.buttonText;
+            document.getElementById('qrText').textContent = 'Dana QR';
+            document.getElementById('qrLink').href = data.qrLink;
+            document.getElementById('qrButton').textContent = data.qrButtonText;
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+
+    // Function to copy text to clipboard
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+</script>
 </body>
 
 </html>
